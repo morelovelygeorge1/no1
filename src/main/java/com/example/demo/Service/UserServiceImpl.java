@@ -1,7 +1,7 @@
 package com.example.demo.Service;
 
-import com.twimi.documentmanager.Model.User;
-import com.twimi.documentmanager.Util.MultiResult;
+import com.example.demo.Model.User;
+import com.example.demo.Util.MultiResult;
 
 import java.util.List;
 
