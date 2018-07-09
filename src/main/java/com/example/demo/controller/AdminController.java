@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.twimi.documentmanager.Model.User;
-import com.twimi.documentmanager.Service.UserService;
+import com.example.demo.Model.User;
+import com.example.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

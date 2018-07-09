@@ -1,13 +1,12 @@
 package com.example.demo.Dao;
 
-
-import com.twimi.documentmanager.Model.User;
+import com.example.demo.Model.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
-public interface UserService {
+public interface UserDao {
     @Select("Select * From user")
     List<User> getAllUsers();
 
@@ -27,3 +26,4 @@ public interface UserService {
     @Update("Update user Set status=#{status} Where uid=#{uid}")
     void changeStatus(@Param("uid") int uid, @Param("status") int status);
 }
+

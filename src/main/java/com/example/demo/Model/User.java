@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.Model;
 
 import lombok.Data;
 @Data
@@ -19,7 +19,7 @@ public class User {
     private int industryid;
     private int committeeid;
 
-    public User() {
+    public User(){
 
     }
 

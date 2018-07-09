@@ -1,10 +1,11 @@
 package com.example.demo.Service.Impl;
 
-import com.twimi.documentmanager.Dao.UserDao;
-import com.twimi.documentmanager.Model.User;
-import com.twimi.documentmanager.Service.UserService;
-import com.twimi.documentmanager.Util.MultiResult;
+import com.example.demo.Dao.UserDao;
+import com.example.demo.Model.User;
+import com.example.demo.Service.UserService;
+import com.example.demo.Util.MultiResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +13,11 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserDao userDao;
+        @Autowired
+        UserDao userDao;
+
+
+
 
     @Override
     public MultiResult<User> login(String username, String password) {
