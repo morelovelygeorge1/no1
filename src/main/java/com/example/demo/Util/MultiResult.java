@@ -1,4 +1,4 @@
 package com.example.demo.Util;
 
-public class MultResult {
+public class MultiResult {
 }

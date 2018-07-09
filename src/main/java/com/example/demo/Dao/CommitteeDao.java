@@ -1,4 +1,4 @@
 package com.example.demo.Dao;
 
-public interface UserService {
+public interface CommitteeDao {
 }
