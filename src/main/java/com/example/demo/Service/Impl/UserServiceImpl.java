@@ -19,9 +19,6 @@ public class UserServiceImpl implements UserService {
 
 
 
-
-
-
     @Override
     public MultiResult<User> login(String username, String password) {
         MultiResult<User> multiResult = new MultiResult<>();
