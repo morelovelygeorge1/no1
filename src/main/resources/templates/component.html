@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" th:fragment="page_title">
+    <a class="navbar-brand" href="/index/index">能力规范文稿管理系统</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/proposal/list">写者</a>
+            </li>
+            <li class="nav-item" th:if="${user!=null && user.role==1}">
+                <a class="nav-link" href="/admin/index">管理员</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav" th:if="${user!=null}">
+            <li class="nav-item">
+                <a class="nav-link" href="#" th:text="|当前用户:${user.username}|"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/logout">注销</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div th:fragment="page_login">
+    <div th:if="${user==null}" class="card mt-4">
+        <div class="card-body">
+            <form action="/user/login" method="post" class="form-inline">
+                <input class="form-control mr-sm-2" type="text" name="username" placeholder="用户名" required>
+                <input class="form-control mr-sm-2" type="password" name="password" placeholder="密码" required>
+                <input class="btn btn-outline-success my-2 my-sm-0 mr-sm-2" type="submit" value="登录">
+                <a class="btn btn-outline-success my-2 my-sm-0" role="button" href="/user/register">注册</a>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-3" th:fragment="admin_nav">
+    <div class="card mt-4">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="/user/manage">用户管理</a></li>
+                <li class="list-group-item"><a href="/user/verify">用户审核</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="col-3" th:fragment="writer_nav">
+    <div class="card mt-4">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="/proposal/new">新提案</a></li>
+                <li class="list-group-item"><a href="/proposal/my">我的提案</a></li>
+                <li class="list-group-item"><a href="/proposal/list">提案列表</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>
