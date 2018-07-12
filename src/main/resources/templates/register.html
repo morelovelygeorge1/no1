@@ -17,7 +17,7 @@
     <script src="/js/material.min.js"></script>
     <title>注册</title>
 </head>
-<body style="background: floralwhite">
+<body style="background:rgb(249,200,226)">
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -75,21 +75,35 @@
                             <label for="industryid">行业分会</label>
                             <select name="industryid" id="industryid" class="form-control" required>
                                 <option th:each="industry:${industries}" th:value="${industry.industryid}" th:text="${industry.name}"></option>
+                                <option 1="${industry.industry1}"  selected>1</option>
+                                <option 2="${industry.industry2}"  selected>2</option>
+                                <option 3="${industry.industry3}"  selected>3</option>
+                                <option 4="${industry.industry4}"  selected> </option>
+                                </select>
+
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="committeeid">专委会</label>
                             <select name="committeeid" id="committeeid" class="form-control" required>
                                 <option th:each="committee:${committees}" th:value="${committee.committeeid}" th:text="${committee.name}"></option>
+                                <option 1="${committee.committee1}"  selected>1</option>
+                                <option 2="${committee.committee2}"  selected>2</option>
+                                <option 3="${committee.committee3}"  selected>3</option>
+                                <option 4="${committee.committee4}"  selected> </option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="seminarid">研究会</label>
                             <select name="seminarid" id="seminarid" class="form-control" required>
                                 <option th:each="seminar:${seminars}" th:value="${seminar.seminarid}" th:text="${seminar.name}"></option>
+                                <option 1="${seminar.seminar1}"  selected>1</option>
+                                <option 2="${seminar.seminar2}"  selected>2</option>
+                                <option 3="${seminar.seminar3}"  selected>3</option>
+                                <option 4="${seminar.seminar4}"  selected> </option>
                             </select>
                         </div>
-                        <input type="submit" class="btn btn-lg btn-success btn-block" value="注册">
+                        <input type="submit" class="btn btn-lg btn-warning btn-block" value="注册">
                         <div class="float-right"><a role="button" href="/user/login" class="btn btn-link">登陆</a></div>
                     </form>
                 </div>

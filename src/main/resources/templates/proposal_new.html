@@ -17,7 +17,7 @@
     <script src="/js/material.min.js"></script>
     <title>提案列表</title>
 </head>
-<body>
+<body style="background: rgb(249,200,226)">
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -48,8 +48,8 @@
                                     <input type="checkbox" class="form-check-input" id="proposalCheck" required>
                                     <label class="form-check-label" for="proposalCheck">我已阅读提案建议要求</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary" th:if="${proposal!=null}">保存</button>
-                                <button type="submit" class="btn btn-primary" th:if="${proposal==null}">提交</button>
+                                <button type="submit" class="btn btn-dark" th:if="${proposal!=null}">保存</button>
+                                <button type="submit" class="btn btn-dark" th:if="${proposal==null}">提交</button>
                             </form>
                         </div>
                     </div>
