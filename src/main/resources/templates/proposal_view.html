@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0;">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/material.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="/js/material.min.js"></script>
     <title>提案详情</title>
 </head>
 <body>
@@ -22,10 +22,21 @@
     <div class="row">
         <div class="col-12">
             <div th:replace="~{component :: page_title}"></div>
-            <div th:replace="~{component :: page_login}"></div>
             <div class="row">
                 <div th:replace="~{component :: writer_nav}"></div>
                 <div class="col-9">
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <p class="card-text">当前状态:
+                                <a th:switch="${proposal.status}">
+                                    <a th:case="0">征集意见中</a>
+                                    <a th:case="1">已被推荐,等待行业分会备案</a>
+                                    <a th:case="2">已被备案,等待研究会立案</a>
+                                    <a th:case="3">已被立案</a>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
                     <div class="card mt-4">
                         <div class="card-header">
                             提案详情
@@ -39,10 +50,16 @@
                             </p>
                             <p class="card-text">提案内容:</p>
                             <p class="card-text" th:text="${proposal.content}"></p>
-                            <p><button class="btn btn-primary" onclick="window.print()">打印</button></p>
+                            <p>
+                                <button class="btn btn-primary" onclick="window.print()">打印</button>
+                                <a class="btn btn-primary" th:if="${proposal.author==user.uid && proposal.status!=3 || user.role==1}" th:href="|/proposal/save/${proposal.pid}|">编辑</a>
+                                <a class="btn btn-primary" th:if="${proposal.status==0 && (user.role==2 || user.role==1)}" th:href="|/proposal/recommend/${proposal.pid}|">推荐</a>
+                                <a class="btn btn-primary" th:if="${proposal.status==1 && (user.role==3 || user.role==1)}" th:href="|/proposal/record/${proposal.pid}|">备案</a>
+                                <a class="btn btn-primary" th:if="${proposal.status==2 && (user.role==4 || user.role==1)}" th:href="|/proposal/register/${proposal.pid}|">立案</a>
+                            </p>
                         </div>
                     </div>
-                    <div class="card mt-4">
+                    <div class="card mt-4" th:if="${user!=null}">
                         <div class="card-body">
                             <form action="/proposal/comment" method="post">
                                 <input type="hidden" name="pid" th:value="${proposal.pid}">

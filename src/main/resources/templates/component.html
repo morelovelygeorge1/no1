@@ -16,6 +16,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/proposal/list">写者</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/info">个人信息</a>
+            </li>
             <li class="nav-item" th:if="${user!=null && user.role==1}">
                 <a class="nav-link" href="/admin/index">管理员</a>
             </li>
@@ -59,6 +62,11 @@
                 <li class="list-group-item"><a href="/proposal/new">新提案</a></li>
                 <li class="list-group-item"><a href="/proposal/my">我的提案</a></li>
                 <li class="list-group-item"><a href="/proposal/list">提案列表</a></li>
+                <li class="list-group-item"><a href="/user/recommend">推荐用户</a></li>
+                <li class="list-group-item" th:if="${user.role==2||user.role==1}"><a href="/proposal/collect">待推荐列表</a></li>
+                <li class="list-group-item" th:if="${user.role==2||user.role==3||user.role==1}"><a href="/proposal/recommend">推荐列表</a></li>
+                <li class="list-group-item" th:if="${user.role==3||user.role==4||user.role==1}"><a href="/proposal/record">备案列表</a></li>
+                <li class="list-group-item" th:if="${user.role==4||user.role==1}"><a href="/proposal/register">立案列表</a></li>
             </ul>
         </div>
     </div>

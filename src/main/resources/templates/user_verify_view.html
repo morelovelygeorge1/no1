@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0;">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/material.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="/js/material.min.js"></script>
     <title>管理员</title>
 </head>
 <body>
@@ -22,7 +22,6 @@
     <div class="row">
         <div class="col-12">
             <div th:replace="~{component :: page_title}"></div>
-            <div th:replace="~{component :: page_login}"></div>
             <div class="row">
                 <div th:replace="~{component :: admin_nav}"></div>
                 <div class="col-9">
@@ -36,23 +35,33 @@
                             <p class="card-text">出生日期 : <a th:text="${checkuser.birthday}"></a></p>
                             <p class="card-text">家庭住址 : <a th:text="${checkuser.address}"></a></p>
                             <p class="card-text">联系方式 : <a th:text="${checkuser.contact}"></a></p>
-                            <p class="card-text">推荐人 : <a th:text="${checkuser.referrer}"></a></p>
-                            <p class="card-text">申请内容 : </p>
+                            <p class="card-text" th:if="${recommenduser!=null}">推荐人 : <a
+                                    th:text="${recommenduser.name}"></a></p>
                         </div>
                     </div>
-                    <div class="card mt-4">
+                    <div class="card mt-4" th:if="${recommenduser!=null}">
                         <div class="card-header">
                             会员推荐表
                         </div>
                         <div class="card-body">
-
+                            <p class="card-text">推荐人 : <a th:text="${recommenduser.name}"></a></p>
+                            <p class="card-text">单位 : <a th:text="${recommenduserinfo.company}"></a></p>
+                            <p class="card-text">电话 : <a th:text="${recommenduserinfo.phone}"></a></p>
+                            <p class="card-text">被推荐人 : <a th:text="${checkuser.name}"></a></p>
+                            <p class="card-text">职称 : <a th:text="${recommenduserinfo.title}"></a></p>
+                            <p class="card-text">职务 : <a th:text="${recommenduserinfo.position}"></a></p>
+                            <p class="card-text">邮箱 : <a th:text="${recommenduserinfo.email}"></a></p>
+                            <p class="card-text">申请内容 : </p>
+                            <p class="card-text" th:text="${reason}"></p>
                         </div>
                     </div>
-                    <div class="card mt-4">
+                    <div class="card mt-4" th:if="${user.role==1}">
                         <div class="card-body">
-                            <a role="button" class="btn btn-outline-success">同意</a>
-                            <a role="button" class="btn btn-outline-danger">拒绝</a>
-                            <a role="button" class="btn btn-outline-primary">返回</a>
+                            <a role="button" class="btn btn-outline-success"
+                               th:href="@{'/user/verify/' + ${checkuser.uid}(status=1)}">同意</a>
+                            <a role="button" class="btn btn-outline-danger"
+                               th:href="@{'/user/verify/'+ ${checkuser.uid}(status=2)}">拒绝</a>
+                            <a role="button" class="btn btn-outline-primary" href="/user/verify">返回</a>
                         </div>
                     </div>
                 </div>
