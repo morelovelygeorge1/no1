@@ -11,5 +11,19 @@ public class UserInfo {
     private String phone;
     private String email;
     private String wechat;
+
+    public UserInfo() {
+
+    }
+
+    public UserInfo(int uid, String company, String title, String position, String phone, String email, String wechat) {
+        this.uid = uid;
+        this.company = company;
+        this.title = title;
+        this.position = position;
+        this.phone = phone;
+        this.email = email;
+        this.wechat = wechat;
+    }
 }
 
